@@ -50,7 +50,7 @@ AdminToolkit/
 
 - ✅ Clone the repository: 
 ~~~powershell 
-git clone https://github.com/yourusername/AdminToolkit.git
+git clone https://github.com/ruipalmeira/AdminToolkit.git
 ~~~
 - ✅ Unblock the scripts if necessary:
 ~~~powershell 

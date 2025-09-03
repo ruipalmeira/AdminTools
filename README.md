@@ -26,14 +26,14 @@ It helps IT administrators automate common tasks, enforce policies, and generate
 ## Folder Structure 📁🗄️
 
 AdminToolkit/  
-├─ scripts/       # PowerShell scripts  
+├─ scripts/  
 │   ├─ Set-PasswordNeverExpires.ps1  
 │   ├─ Audit-PasswordNeverExpires.ps1  
 │   └─ OtherScripts.ps1  
-├─ logs/          # Script-generated logs (ignored by Git)  
-├─ docs/          # Documentation and usage guides  
-├─ .gitignore     # Ignored files (logs, CSVs, etc.)  
-└─ README.md      # This file  
+├─ logs/  
+├─ docs/ 
+├─ .gitignore  
+└─ README.md
 
 ---
 
@@ -50,7 +50,7 @@ AdminToolkit/
 
 - ✅ Clone the repository: 
 ~~~powershell 
-git clone https://github.com/yourusername/AdminToolkit.git
+git clone https://github.com/ruipalmeira/AdminToolkit.git
 ~~~
 - ✅ Unblock the scripts if necessary:
 ~~~powershell 

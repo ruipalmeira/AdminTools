@@ -108,35 +108,52 @@ Example:
 cd C:\AdminTools\scripts
 .\Set-PasswordNeverExpires.ps1
 ~~~
-
 ---
-
-### 2. Audit PasswordNeverExpires Across Domain 🔎🕵️
-
-- Script: `Audit-PasswordNeverExpires.ps1`  
+### 2. Export AD Users 👥📋
+- Script: `AD_UserExtract.ps1`  
 - Features:
-  - Scans all users across the domain
-  - Exports a CSV audit report with:
-
-| Column | Description |
-|--------|------------|
-| `DateTime` | Timestamp of the audit entry |
-| `Admin` | Username of the admin who ran the script |
-| `SamAccountName` | User account name |
-| `DisplayName` | User’s full name |
-| `OU` | Organizational Unit location |
-| `PasswordNeverExpires` | True/False |
-| `PasswordLastSet` | Date the password was last set |
-| `Description` | Any description field from AD |
-
-- Handles special characters with UTF-8 encoding
+  - Interactive OU selection with support for child OUs.
+  - Option to include/exclude sub-OUs.
+  - Retrieves key user attributes: `SamAccountName`, `DisplayName`, `Email`, `Enabled`, `LastLogonDate`, `Office`, and OU.  
+  - Creates an audit log recording: who ran the script, which OU was exported, number of users, and timestamp.  
+  - UTF8-encoded CSV output supporting special characters.
 
 Example:
 ~~~powershell
 cd C:\AdminTools\scripts
-.\Audit-PasswordNeverExpires.ps1
+.\AD_UserExtract.ps1
 ~~~
 ---
+### 3. Export SharePoint Site Groups 🏢📋
+- Script: `SharePoint_GroupExtract.ps1`  
+- Features:
+  - Connects to SharePoint Online site using Entra ID App Registration
+  - Retrieves all site groups and key properties
+  - Exports to CSV and creates audit log
+
+Example:
+~~~powershell
+cd C:\AdminTools\scripts
+.\SharePoint_GroupExtract.ps1
+~~~
+
+---
+
+### 4. Export SharePoint Group Memberships 🧑‍🤝‍🧑📋
+- Script: `SharePoint_GroupMembershipExtract.ps1`  
+- Features:
+  - Connects interactively with Entra ID App Registration
+  - Loops through each site group and exports members to CSV
+  - Updates audit log for each run
+
+Example:
+~~~powershell
+cd C:\AdminTools\scripts
+.\SharePoint_GroupMembershipExtract.ps1
+~~~
+
+---
+
 
 ## Logging 📄📄
 
@@ -151,6 +168,45 @@ cd C:\AdminTools\scripts
 - Keep `logs/` folder out of Git to avoid committing sensitive data  
 - Commit scripts and README updates regularly  
 - Add new scripts under `scripts/` and document usage in `docs/`  
+
+---
+## Admin Toolkit Flowchart 🗂️📊
+
+```mermaid
+flowchart TD
+    A["Admin Toolkit Scripts"]:::main
+    B["AD User Export Script"]:::ad
+    C["AD Group Export Script"]:::ad
+    D["SharePoint Site Group Export Script"]:::sp
+    E["SharePoint Group Membership Export Script"]:::sp
+
+    F["CSV: Users Attributes (SamAccountName, Name, Email, Office)"]:::csv
+    G["CSV: Groups Attributes (Name, Scope, Description, OU)"]:::csv
+    H["CSV: Site Groups Attributes (Title, Owner, OnlyAllowMembersViewMembership)"]:::csv
+    I["CSV: Group Members (GroupName, Member, LoginName, Email)"]:::csv
+
+    J["Audit Log CSV (Admin, Timestamp, Scope, Output File, Count, Action)"]:::log
+
+    A --> B
+    A --> C
+    A --> D
+    D --> E
+
+    B --> F
+    C --> G
+    D --> H
+    E --> I
+
+    F --> J
+    G --> J
+    H --> J
+    I --> J
+
+    classDef main fill:#f9f,stroke:#333,stroke-width:2px,color:#000;
+    classDef ad fill:#9be3ff,stroke:#333,stroke-width:1px,color:#000;
+    classDef sp fill:#ffdab9,stroke:#333,stroke-width:1px,color:#000;
+    classDef csv fill:#d4f4dd,stroke:#333,stroke-width:1px,color:#000;
+    classDef log fill:#ffe699,stroke:#333,stroke-width:2px,color:#000;
 
 ---
 

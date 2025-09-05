@@ -170,9 +170,10 @@ cd C:\AdminTools\scripts
 - Add new scripts under `scripts/` and document usage in `docs/`  
 
 ---
-## Admin Toolkit Flowchart 🗂️📊
 
-```mermaid
+## Admin Toolkit Flowchart 🗂️📊  
+
+```mermaid  
 flowchart TD
     A["Admin Toolkit Scripts"]:::main
     B["AD User Export Script"]:::ad
@@ -207,10 +208,8 @@ flowchart TD
     classDef sp fill:#ffdab9,stroke:#333,stroke-width:1px,color:#000;
     classDef csv fill:#d4f4dd,stroke:#333,stroke-width:1px,color:#000;
     classDef log fill:#ffe699,stroke:#333,stroke-width:2px,color:#000;  
-    
-
+```  
 ---
-
 ## Contributing 🏗️🛠️
 #### 1. Fork the repository  
 #### 2. Create a branch for your feature or fix:
@@ -219,9 +218,7 @@ git checkout -b feature/new-script
 ~~~
 #### 3. Commit your changes with descriptive messages  
 #### 4. Push your branch and create a pull request
-
 ---
-
 ## License ©️🧑‍⚖️
 
 CC BY-NC-SA 4.0 – [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/)

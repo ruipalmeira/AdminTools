@@ -67,7 +67,9 @@ AdminToolkit/
 
 - Windows Server or Windows 10/11 with the **ActiveDirectory** module installed  
 - PowerShell 5.1+ or PowerShell 7+ recommended  
-- Appropriate AD privileges for user management and read access  
+- Appropriate AD privileges
+- PnP.PowerShell module for SharePoint scripts
+- Entra ID App Registration (ClientId) with delegated permissions for SharePoint scripts
 - Git (optional, if using version control)
 
 ---

@@ -5,12 +5,36 @@ The **Admin Toolkit** is a collection of PowerShell scripts for managing and aud
 It helps IT administrators automate common tasks, enforce policies, and generate reports safely and efficiently.
 
 ### **Key Features :** ⚙️✨
-- Set `PasswordNeverExpires` for users in nested OUs with optional recursion.
-- Audit users’ `PasswordNeverExpires` flag across the entire domain.
-- Logs changes and audit reports to CSV files with proper UTF-8 encoding.
-- Skips likely service accounts automatically to prevent accidental changes.
-- Safe and interactive prompts with confirmations before making modifications.
-
+#### AD_User Set PasswordNeverExpires flag - SetPasswordNeverExpires.ps1
+- Purpose: Sets `PasswordNeverExpires` for users in nested OUs with optional recursion and Audit users’ `PasswordNeverExpires` flag across the entire domain.
+- Features:
+  - Logs changes and audit reports to CSV files with proper UTF-8 encoding.
+  - Skips likely service accounts automatically to prevent accidental changes.
+  - Safe and interactive prompts with confirmations before making modifications.
+#### AD User Export Script - AD_UserExtract.ps1
+- Purpose: Export users from Active Directory to CSV for reporting or auditing.
+- Features:
+  - Interactive OU selection with support for child OUs.
+  - Option to include/exclude sub-OUs.
+  - Retrieves key user attributes: SamAccountName, DisplayName, Email, Enabled, LastLogonDate, Office, and OU. 
+  - Creates an audit log recording: who ran the script, which OU was exported, number of users, and timestamp. 
+  - UTF8-encoded CSV output supporting special characters.
+#### SharePoint Site Group Export Script - SharePoint_GroupExtract.ps1
+- Purpose: Extract SharePoint Online site groups using PnP.PowerShell.
+- Features: 
+  - Connects via Entra ID App Registration (``ClientId``) with delegated permissions for Graph and SharePoint.
+  - Retrieves all site groups: ``Title``, ``Id``, ``LoginName``, ``OwnerTitle``, ``OnlyAllowMembersViewMembership``.
+  - Exports to CSV and maintains **audit logging** with site URL, output file, admin, and timestamp.
+  - Handles MFA or device login securely.
+#### SharePoint Group Membership Export Script - SharePoint_GroupMembershipExtract.ps1
+  - Purpose: Export each SharePoint site group and its members to CSV.
+  - Features: 
+    - Connects using Entra ID App Registration with interactive login.
+    - Loops through all site groups and retrieves members for each.
+    - Captures: ``GroupName``, ``GroupId``, ``Member Name``, ``LoginName``, ``Email``.
+    - Handles groups with **no members** gracefully.
+    - Outputs a membership CSV and updates an audit log including site, output file, and timestamp.
+    - Provides clear console feedback while processing each group.
 ---
 
 ## Quick Reference 🎯⚡
@@ -18,8 +42,9 @@ It helps IT administrators automate common tasks, enforce policies, and generate
 | Script | Purpose |
 |--------|---------|
 | `Set-PasswordNeverExpires.ps1` | Set or unset PasswordNeverExpires flag for users across nested OUs |
-| `Audit-PasswordNeverExpires.ps1` | Audit all users’ PasswordNeverExpires flag domain-wide and export CSV |
-| `OtherScripts.ps1` | Placeholder for future scripts |
+| `AD_UserExtract.ps1` | Export users from Active Directory to CSV for reporting or auditing. |
+| `SharePoint_GroupExtract.ps1` | Extract SharePoint Online site groups using PnPPowerShell. |
+| `SharePoint_GroupMembershipExtract.ps1` | Export each SharePoint site group and its members to CSV |
 
 ---
 
@@ -28,11 +53,11 @@ It helps IT administrators automate common tasks, enforce policies, and generate
 AdminToolkit/  
 ├─ scripts/  
 │   ├─ SetPasswordNeverExpires.ps1  
-│   ├─ AD_GroupExtract.ps1
-│   ├─ Sharepoint_GroupExtract.ps1
-│   └─ OtherScripts.ps1  
+│   ├─ AD_GroupExtract.ps1  
+│   ├─ Sharepoint_GroupExtract.ps1  
+│   └─ SharePoint_GroupMembershipExtract.ps1  
 ├─ logs/  
-├─ docs/ 
+├─ docs/  
 ├─ .gitignore  
 └─ README.md
 

@@ -27,8 +27,9 @@ It helps IT administrators automate common tasks, enforce policies, and generate
 
 AdminToolkit/  
 ├─ scripts/  
-│   ├─ Set-PasswordNeverExpires.ps1  
-│   ├─ Audit-PasswordNeverExpires.ps1  
+│   ├─ SetPasswordNeverExpires.ps1  
+│   ├─ AD_GroupExtract.ps1
+│   ├─ Sharepoint_GroupExtract.ps1
 │   └─ OtherScripts.ps1  
 ├─ logs/  
 ├─ docs/ 
